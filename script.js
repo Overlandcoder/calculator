@@ -17,3 +17,14 @@ let operate = (num1, num2, operator) => {
       return divide(num1, num2);
   }
 }
+
+const numberButtons = document.querySelectorAll(".number");
+const screen = document.querySelector(".screen");
+numberButtons.forEach(btn => btn.addEventListener("click", () => {
+  let num = btn.textContent;
+  if (screen.textContent == 0) {
+    screen.textContent = num;
+  } else {
+    screen.textContent += num;
+  }
+}))
