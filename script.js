@@ -2,7 +2,6 @@ let add = (num1, num2) => num1 + num2;
 let subtract = (num1, num2) => num1 - num2;
 let multiplty = (num1, num2) => num1 * num2;
 let divide = (num1, num2) => num1 / num2;
-let operators = ["+", "-", "x", "/"];
 let firstNum;
 let secondNum;
 let operator;
@@ -81,6 +80,6 @@ operatorButtons.forEach(btn => btn.addEventListener("click", () => {
 equalButton.addEventListener("click", () => {
   secondNum = parseInt(operations.textContent);
   result.textContent = operate(firstNum, secondNum, currentOperator[0]);
-  resetValues();
   calculations = 0;
+  resetValues();
 })
