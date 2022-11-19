@@ -10,8 +10,6 @@ let currentOperator = [];
 let calculations = 0;
 
 let operate = (num1, num2, operator) => {
-  if (!operators.includes(operator)) return "Invalid operator";
-
   switch (operator) {
     case "+":
       return add(num1, num2);
@@ -20,6 +18,10 @@ let operate = (num1, num2, operator) => {
     case "x":
       return multiplty(num1, num2);
     case "/":
+      if (num2 == 0) {
+        result.classList.toggle("small-font");
+        return "Cannot divide by 0";
+      }
       return divide(num1, num2);
   }
 }
@@ -29,6 +31,7 @@ function resetValues() {
   secondNum = undefined;
   operations.textContent = "";
   currentOperator.shift();
+  result.classList.remove("small-font");
 }
 
 const numberButtons = document.querySelectorAll(".number");

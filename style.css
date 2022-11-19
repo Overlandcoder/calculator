@@ -97,3 +97,7 @@
 .btn-clear:hover {
   background-color: rgb(255, 236, 63);
 }
+
+.small-font {
+  font-size: 20px;
+}
