@@ -19,7 +19,7 @@ let operate = (num1, num2, operator) => {
       return multiplty(num1, num2);
     case "/":
       if (num2 == 0) {
-        result.classList.toggle("small-font");
+        result.classList.add("small-font");
         return "Cannot divide by 0";
       }
       return divide(num1, num2);
