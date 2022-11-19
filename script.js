@@ -18,8 +18,7 @@ let operate = (num1, num2, operator) => {
       return multiplty(num1, num2);
     case "/":
       if (num2 == 0) {
-        result.classList.add("small-font");
-        return "Cannot divide by 0";
+        return "Can't divide by 0";
       }
       return divide(num1, num2);
   }
@@ -28,48 +27,50 @@ let operate = (num1, num2, operator) => {
 function resetValues() {
   firstNum = parseInt(result.textContent);
   secondNum = undefined;
-  operations.textContent = "";
+  operands.textContent = "";
   currentOperator.shift();
-  result.classList.remove("small-font");
 }
 
-const numberButtons = document.querySelectorAll(".number");
-const operatorButtons = document.querySelectorAll(".operator");
-const operations = document.querySelector(".operations");
-const result = document.querySelector(".result");
-const equalButton = document.querySelector(".equal");
-const clearButton = document.querySelector(".btn-clear");
-
-numberButtons.forEach(btn => btn.addEventListener("click", () => {
-  let num = btn.textContent;
-  if (operations.textContent == 0) {
-    operations.textContent = num;
-  } else {
-    operations.textContent += num;
-  }
-}))
-
-clearButton.addEventListener("click", () => {
-  operations.textContent = 0;
+function clearAll() {
+  operands.textContent = 0;
   result.textContent = "";
   firstNum = undefined;
   secondNum = undefined;
   currentOperator = [];
   calculations = 0;
-})
+}
+
+const numberButtons = document.querySelectorAll(".number");
+const operatorButtons = document.querySelectorAll(".operator");
+const operands = document.querySelector(".operands");
+const result = document.querySelector(".result");
+const equalButton = document.querySelector(".equal");
+const clearButton = document.querySelector(".btn-clear");
+
+numberButtons.forEach(btn => btn.addEventListener("click", () => {
+  if (result.textContent == "Can't divide by 0") result.textContent = "";
+  let num = btn.textContent;
+  if (operands.textContent == 0) {
+    operands.textContent = num;
+  } else {
+    operands.textContent += num;
+  }
+}))
+
+clearButton.addEventListener("click", clearAll);
 
 operatorButtons.forEach(btn => btn.addEventListener("click", () => {
   operator = btn.textContent;
   currentOperator.push(operator);
   
   if (!firstNum) {
-    firstNum = parseInt(operations.textContent);
+    firstNum = parseInt(operands.textContent);
   } else {
-    secondNum = parseInt(operations.textContent);
+    secondNum = parseInt(operands.textContent);
   }
 
   if (calculations < 1) {
-    operations.textContent = "";
+    operands.textContent = "";
   } else {
     result.textContent = operate(firstNum, secondNum, currentOperator[0]);
     resetValues();
@@ -78,7 +79,7 @@ operatorButtons.forEach(btn => btn.addEventListener("click", () => {
 }))
 
 equalButton.addEventListener("click", () => {
-  secondNum = parseInt(operations.textContent);
+  secondNum = parseInt(operands.textContent);
   result.textContent = operate(firstNum, secondNum, currentOperator[0]);
   calculations = 0;
   resetValues();
