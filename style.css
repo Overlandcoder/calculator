@@ -73,7 +73,7 @@
 
 .equal {
   width: 50%;
-  background-color: rgb(182, 242, 255);
+  background-color: rgb(255, 211, 99);
 }
 
 .btn-clear {
@@ -94,6 +94,6 @@
   background-color:#dcffc8;
 }
 
-.equal:hover, .btn-clear:hover {
+.btn-clear:hover {
   background-color: rgb(255, 236, 63);
 }
